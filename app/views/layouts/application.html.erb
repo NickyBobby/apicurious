@@ -5,9 +5,12 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/frameworks-b0061fb9735ea0401cff1e8b15e4b9a6c08c306f0a7176370153964b4caa26e5.css" integrity="sha256-sAYfuXNeoEAc/x6LFeS5psCMMG8KcXY3AVOWS0yqJuU=" media="all" rel="stylesheet" />
+  <link crossorigin="anonymous" href="https://assets-cdn.github.com/assets/github-905c13761480722cf3ec0000a67206b62c43755f9bf73184036e2245536337f1.css" integrity="sha256-kFwTdhSAcizz7AAApnIGtixDdV+b9zGEA24iRVNjN/E=" media="all" rel="stylesheet" />
+
 </head>
 <body>
-
+<%= render partial: 'shared/navbar' %>
 <%= yield %>
 
 </body>
