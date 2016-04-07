@@ -1,0 +1,980 @@
+<div role="main" class="main-content">
+  <div id="js-pjax-container" data-pjax-container>
+    <div class="page-content container">
+      <div class="columns profilecols">
+        <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
+          <a href="/account" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
+            <img alt class="avatar rounded-2" height="230" src="<%= @user.avatar %>" width="230">
+          </a>
+          <h1 class="vcard-name my-3">
+            <div class="vcard-fullname" itemprop="name"><%= @user.name %></div>
+            <div class="vcard-username" itemprop="additionalName"><%= @user.username %></div>
+          </h1>
+          <ul class="vcard-details border-top border-gray-light py-3">
+            <li aria-label="Home location" class="vcard-detail py-1 cass-truncate cass-truncate-target" itemprop="homeLocation" title="Denver, CO">
+              <svg aria-hidden="true" class="octicon octicon-location" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 0C2.69 0 0 2.5 0 5.5c0 4.52 6 10.5 6 10.5s6-5.98 6-10.5C12 2.5 9.31 0 6 0z m0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61 0.48 3.56 1.36 0.92 0.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05z m2-9.05c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path></svg>
+              <%= current_user.user_info.location %>
+            </li>
+            <li aria-label="Member since" class="vcard-deatil py-1 cass-truncate cass-truncate-target">
+              <svg aria-hidden="true" class="octicon octicon-clock" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M8 8h3v2H7c-0.55 0-1-0.45-1-1V4h2v4z m-1-5.7c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path></svg>
+                <span class="join-label">Joined on </span>
+                <time class="join-date" datetime="2015-08-18-18T17:09:50Z" day="numeric" is="local-time" month="short" year="numeric" title="Aug 18, 2015, 11:09 AM MDT">Aug 18, 2015</time>
+            </li>
+          </ul>
+          <div class="vcard-stats border-top border-bottom border-gray-light mb-3 py-3">
+            <a class="vcard-stat" href="/NickyBobby/followers">
+              <strong class="vcard-stat-count d-block"><%= current_user.user_info.followers %></strong>
+              <span class="text-muted">Followers</span>
+            </a>
+            <a class="vcard-stat" href="/stars">
+              <strong class="vcard-stat-count d-block"><%= current_user.starred_repos.count %></strong>
+              <span class="text-muted">Starred</span>
+            </a>
+            <a class="vcard-stat" href="/NickyBobby/following">
+              <strong class="vcard-stat-count d-block"><%= current_user.user_info.following %></strong>
+              <span class="text-muted">Following</span>
+            </a>
+          </div>
+        <div class="clearfix">
+          <h3>Organizations</h3>
+          <%= current_user.organizations %>
+          <!-- <%= current_user.repositories %> -->
+          <a href="/TestingTuringTesting" aria-label="TestingTuringTesting" class="tooltipped tooltipped-n avatar-group-item" itemprop="follows">
+            <img alt="@TestingTuringTesting" class="avatar" height="42" src="https://avatars2.githubusercontent.com/u/17713133?v=3&s=84" width="42">
+          </a>
+        </div>
+      </div>
+        <div class="column three-fourths">
+          <div class="tabnav">
+            <div class="right">
+              <a href="/account" class="btn btn-sm">
+                <svg aria-hidden="true" class="octicon octicon-pencil" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M0 12v3h3l8-8-3-3L0 12z m3 2H1V12h1v1h1v1z m10.3-9.3l-1.3 1.3-3-3 1.3-1.3c0.39-0.39 1.02-0.39 1.41 0l1.59 1.59c0.39 0.39 0.39 1.02 0 1.41z"></path></svg>
+                Edit profile
+              </a>
+            </div>
+            <nav class="tabnav-tabs" data-pjax="" role="navigation">
+              <a href="/NickyBobby" class="tabnav-tab selected" aria-selected="true" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-diff-added" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M13 1H1C0.45 1 0 1.45 0 2v12c0 0.55 0.45 1 1 1h12c0.55 0 1-0.45 1-1V2c0-0.55-0.45-1-1-1z m0 13H1V2h12v12zM6 9H3V7h3V4h2v3h3v2H8v3H6V9z"></path></svg>
+                Contributions
+              </a>
+              <a href="/NickyBobby?tab=repositories" class="tabnav-tab " aria-selected="false" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                Repositories
+              </a>
+              <a href="/NickyBobby?tab=activity" class="tabnav-tab " aria-selected="false" role="tab">
+                <svg aria-hidden="true" class="octicon octicon-rss" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M2 13H0V11c1.11 0 2 0.89 2 2zM0 3v1c4.97 0 9 4.03 9 9h1c0-5.52-4.48-10-10-10z m0 4v1c2.75 0 5 2.25 5 5h1c0-3.31-2.69-6-6-6z"></path></svg>
+                Public activity
+              </a>
+            </nav>
+            </div>
+            <div class="js-repo-filter position-relative">
+              <div class="repo-tab">
+                <div class="filter-bar border-bottom border-gray-dark p-0 pb-3 position-relative">
+
+                </div>
+              </div>
+              <div class="contributions-tab">
+
+                <div class="columns popular-repos">
+                  <div class="column one-half">
+
+                    <div class="boxed-group flush">
+                      <h3>Popular repositories</h3>
+                      <ul class="boxed-group-inner mini-repo-list">
+                            <li class="public source no-description">
+                    <a href="/NickyBobby/web-guesser" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+              <span class="repo" title="web-guesser">web-guesser</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target"></span>
+                  </a>
+                </li>
+                <li class="public source no-description">
+                    <a href="/NickyBobby/binary-search-tree" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+              <span class="repo" title="binary-search-tree">binary-search-tree</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target"></span>
+                  </a>
+                </li>
+                <li class="public source no-description">
+                    <a href="/NickyBobby/blogger" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+              <span class="repo" title="blogger">blogger</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target"></span>
+                  </a>
+                </li>
+                <li class="public source no-description">
+                    <a href="/NickyBobby/chaimz_curator" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+              <span class="repo" title="chaimz_curator">chaimz_curator</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target"></span>
+                  </a>
+                </li>
+                <li class="public fork ">
+                    <a href="/NickyBobby/challenges" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Forked repository" class="octicon octicon-repo-forked repo-icon" height="16" role="img" version="1.1" viewBox="0 0 10 16" width="10"><path d="M8 1c-1.11 0-2 0.89-2 2 0 0.73 0.41 1.38 1 1.72v1.28L5 8 3 6v-1.28c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72v1.78l3 3v1.78c-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72V9.5l3-3V4.72c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2zM2 4.2c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m3 10c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m3-10c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+              <span class="repo" title="challenges">challenges</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target">Assorted coding exercises and challenges from the Turing School</span>
+                  </a>
+                </li>
+
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="column one-half">
+                    <div class="boxed-group flush">
+                      <h3>Repositories contributed to</h3>
+                      <ul class="boxed-group-inner mini-repo-list">
+                            <li class="public source no-description">
+                    <a href="/chadellison/custo_candy_co" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+                      <span class="owner css-truncate-target" title="chadellison">chadellison</span>/<span class="repo" title="custo_candy_co">custo_candy_co</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target"></span>
+                  </a>
+                </li>
+                <li class="public source ">
+                    <a href="/amaxwellblair/the_pivot" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+                      <span class="owner css-truncate-target" title="amaxwellblair">amaxwellblair</span>/<span class="repo" title="the_pivot">the_pivot</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target">Three-person pivot in Mod 3</span>
+                  </a>
+                </li>
+                <li class="public source no-description">
+                    <a href="/hhoopes/HTTP_yeah_you_know_me" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+                      <span class="owner css-truncate-target" title="hhoopes">hhoopes</span>/<span class="repo" title="HTTP_yeah_you_know_me">HTTP_yeah_you_know_me</span>
+                    </span>
+                    <span class="stars">
+                      0
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target"></span>
+                  </a>
+                </li>
+                <li class="public source ">
+                    <a href="/turingschool/community_content" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+                      <span class="owner css-truncate-target" title="turingschool">turingschool</span>/<span class="repo" title="community_content">community_content</span>
+                    </span>
+                    <span class="stars">
+                      6
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target">A repository that contains the instructions and schedule of students' lightning talks.</span>
+                  </a>
+                </li>
+                <li class="public source ">
+                    <a href="/turingschool/lesson_plans" class="mini-repo-list-item css-truncate">
+                      <svg aria-label="Repository" class="octicon octicon-repo repo-icon" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 9h-1v-1h1v1z m0-3h-1v1h1v-1z m0-2h-1v1h1v-1z m0-2h-1v1h1v-1z m8-1v12c0 0.55-0.45 1-1 1H6v2l-1.5-1.5-1.5 1.5V14H1c-0.55 0-1-0.45-1-1V1C0 0.45 0.45 0 1 0h10c0.55 0 1 0.45 1 1z m-1 10H1v2h2v-1h3v1h5V11z m0-10H2v9h9V1z"></path></svg>
+                    <span class="repo-and-owner css-truncate-target">
+                      <span class="owner css-truncate-target" title="turingschool">turingschool</span>/<span class="repo" title="lesson_plans">lesson_plans</span>
+                    </span>
+                    <span class="stars">
+                      79
+                      <svg aria-label="stars" class="octicon octicon-star" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                    </span>
+                    <span class="repo-description css-truncate-target">Lesson Plans for the Turing School of Software &amp; Design</span>
+                  </a>
+                </li>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="boxed-group flush">
+                      <span class="boxed-group-action boxed-group-icon tooltipped tooltipped-nw tooltipped-multiline" aria-label="Includes contributions from private repositories you can access.">
+                        <svg aria-hidden="true" class="octicon octicon-lock" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M4 13h-1v-1h1v1z m8-6v7c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V7c0-0.55 0.45-1 1-1h1V4C2 1.8 3.8 0 6 0s4 1.8 4 4v2h1c0.55 0 1 0.45 1 1z m-8.2-1h4.41V4c0-1.22-0.98-2.2-2.2-2.2s-2.2 0.98-2.2 2.2v2z m7.2 1H2v7h9V7z m-7 1h-1v1h1v-1z m0 2h-1v1h1v-1z"></path></svg>
+                      </span>
+                      <h3>Contributions</h3>
+                  <div id="contributions-calendar" class="contributions-calendar boxed-group-inner">
+                    <div class="js-calendar-graph is-graph-loading graph-canvas calendar-graph" data-url="/NickyBobby">
+                        <svg width="721" height="110" class="js-calendar-graph-svg">
+                <g transform="translate(20, 20)">
+                    <g transform="translate(0, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-04-05"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-04-06"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-04-07"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-04-08"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-04-09"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-04-10"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-04-11"></rect>
+                    </g>
+                    <g transform="translate(13, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-04-12"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-04-13"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-04-14"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-04-15"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-04-16"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-04-17"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-04-18"></rect>
+                    </g>
+                    <g transform="translate(26, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-04-19"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-04-20"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-04-21"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-04-22"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-04-23"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-04-24"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-04-25"></rect>
+                    </g>
+                    <g transform="translate(39, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-04-26"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-04-27"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-04-28"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-04-29"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-04-30"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-05-01"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-05-02"></rect>
+                    </g>
+                    <g transform="translate(52, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-05-03"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-05-04"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-05-05"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-05-06"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-05-07"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-05-08"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-05-09"></rect>
+                    </g>
+                    <g transform="translate(65, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-05-10"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-05-11"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-05-12"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-05-13"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-05-14"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-05-15"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-05-16"></rect>
+                    </g>
+                    <g transform="translate(78, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-05-17"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-05-18"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-05-19"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-05-20"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-05-21"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-05-22"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-05-23"></rect>
+                    </g>
+                    <g transform="translate(91, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-05-24"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-05-25"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-05-26"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-05-27"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-05-28"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-05-29"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-05-30"></rect>
+                    </g>
+                    <g transform="translate(104, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-05-31"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-06-01"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-06-02"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-06-03"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-06-04"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-06-05"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-06-06"></rect>
+                    </g>
+                    <g transform="translate(117, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-06-07"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-06-08"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-06-09"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-06-10"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-06-11"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-06-12"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-06-13"></rect>
+                    </g>
+                    <g transform="translate(130, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-06-14"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-06-15"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-06-16"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-06-17"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-06-18"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-06-19"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-06-20"></rect>
+                    </g>
+                    <g transform="translate(143, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-06-21"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-06-22"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-06-23"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-06-24"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-06-25"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-06-26"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-06-27"></rect>
+                    </g>
+                    <g transform="translate(156, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-06-28"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-06-29"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-06-30"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-07-01"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-07-02"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-07-03"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-07-04"></rect>
+                    </g>
+                    <g transform="translate(169, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-07-05"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-07-06"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-07-07"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-07-08"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-07-09"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-07-10"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-07-11"></rect>
+                    </g>
+                    <g transform="translate(182, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-07-12"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-07-13"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-07-14"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-07-15"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-07-16"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-07-17"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-07-18"></rect>
+                    </g>
+                    <g transform="translate(195, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-07-19"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-07-20"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-07-21"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-07-22"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-07-23"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-07-24"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-07-25"></rect>
+                    </g>
+                    <g transform="translate(208, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-07-26"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-07-27"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-07-28"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-07-29"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-07-30"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-07-31"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-08-01"></rect>
+                    </g>
+                    <g transform="translate(221, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-08-02"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-08-03"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-08-04"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-08-05"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-08-06"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-08-07"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-08-08"></rect>
+                    </g>
+                    <g transform="translate(234, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-08-09"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-08-10"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-08-11"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-08-12"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-08-13"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-08-14"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-08-15"></rect>
+                    </g>
+                    <g transform="translate(247, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-08-16"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-08-17"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-08-18"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-08-19"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-08-20"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-08-21"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-08-22"></rect>
+                    </g>
+                    <g transform="translate(260, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-08-23"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-08-24"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-08-25"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-08-26"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-08-27"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-08-28"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-08-29"></rect>
+                    </g>
+                    <g transform="translate(273, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-08-30"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-08-31"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-09-01"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-09-02"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-09-03"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-09-04"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-09-05"></rect>
+                    </g>
+                    <g transform="translate(286, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-09-06"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-09-07"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-09-08"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-09-09"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-09-10"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-09-11"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-09-12"></rect>
+                    </g>
+                    <g transform="translate(299, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-09-13"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-09-14"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-09-15"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-09-16"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-09-17"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-09-18"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-09-19"></rect>
+                    </g>
+                    <g transform="translate(312, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-09-20"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-09-21"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-09-22"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-09-23"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-09-24"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-09-25"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-09-26"></rect>
+                    </g>
+                    <g transform="translate(325, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-09-27"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-09-28"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-09-29"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-09-30"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-10-01"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-10-02"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-10-03"></rect>
+                    </g>
+                    <g transform="translate(338, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-10-04"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-10-05"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-10-06"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-10-07"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-10-08"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-10-09"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-10-10"></rect>
+                    </g>
+                    <g transform="translate(351, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-10-11"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-10-12"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-10-13"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-10-14"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-10-15"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-10-16"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-10-17"></rect>
+                    </g>
+                    <g transform="translate(364, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-10-18"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-10-19"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-10-20"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-10-21"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-10-22"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-10-23"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-10-24"></rect>
+                    </g>
+                    <g transform="translate(377, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-10-25"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-10-26"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-10-27"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-10-28"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-10-29"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-10-30"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-10-31"></rect>
+                    </g>
+                    <g transform="translate(390, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-11-01"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-11-02"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-11-03"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-11-04"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-11-05"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-11-06"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-11-07"></rect>
+                    </g>
+                    <g transform="translate(403, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-11-08"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-11-09"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-11-10"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-11-11"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-11-12"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-11-13"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-11-14"></rect>
+                    </g>
+                    <g transform="translate(416, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-11-15"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-11-16"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-11-17"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-11-18"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-11-19"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-11-20"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-11-21"></rect>
+                    </g>
+                    <g transform="translate(429, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-11-22"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-11-23"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-11-24"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-11-25"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-11-26"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-11-27"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-11-28"></rect>
+                    </g>
+                    <g transform="translate(442, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-11-29"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-11-30"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2015-12-01"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-12-02"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-12-03"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-12-04"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-12-05"></rect>
+                    </g>
+                    <g transform="translate(455, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-12-06"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2015-12-07"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="4" data-date="2015-12-08"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-12-09"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="1" data-date="2015-12-10"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-12-11"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-12-12"></rect>
+                    </g>
+                    <g transform="translate(468, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="5" data-date="2015-12-13"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="1" data-date="2015-12-14"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="4" data-date="2015-12-15"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#44a340" data-count="13" data-date="2015-12-16"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#8cc665" data-count="7" data-date="2015-12-17"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-12-18"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#d6e685" data-count="2" data-date="2015-12-19"></rect>
+                    </g>
+                    <g transform="translate(481, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-12-20"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="5" data-date="2015-12-21"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="3" data-date="2015-12-22"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#d6e685" data-count="1" data-date="2015-12-23"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2015-12-24"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2015-12-25"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2015-12-26"></rect>
+                    </g>
+                    <g transform="translate(494, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2015-12-27"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="1" data-date="2015-12-28"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="1" data-date="2015-12-29"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2015-12-30"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="2" data-date="2015-12-31"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2016-01-01"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2016-01-02"></rect>
+                    </g>
+                    <g transform="translate(507, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="1" data-date="2016-01-03"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#44a340" data-count="15" data-date="2016-01-04"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="5" data-date="2016-01-05"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#8cc665" data-count="7" data-date="2016-01-06"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#8cc665" data-count="11" data-date="2016-01-07"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="4" data-date="2016-01-08"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#d6e685" data-count="4" data-date="2016-01-09"></rect>
+                    </g>
+                    <g transform="translate(520, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="3" data-date="2016-01-10"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="3" data-date="2016-01-11"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2016-01-12"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#8cc665" data-count="7" data-date="2016-01-13"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="3" data-date="2016-01-14"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="1" data-date="2016-01-15"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2016-01-16"></rect>
+                    </g>
+                    <g transform="translate(533, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2016-01-17"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2016-01-18"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2016-01-19"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#d6e685" data-count="4" data-date="2016-01-20"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2016-01-21"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2016-01-22"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#d6e685" data-count="1" data-date="2016-01-23"></rect>
+                    </g>
+                    <g transform="translate(546, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#8cc665" data-count="9" data-date="2016-01-24"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="1" data-date="2016-01-25"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="3" data-date="2016-01-26"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2016-01-27"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#8cc665" data-count="8" data-date="2016-01-28"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="3" data-date="2016-01-29"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2016-01-30"></rect>
+                    </g>
+                    <g transform="translate(559, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="2" data-date="2016-01-31"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="2" data-date="2016-02-01"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#eeeeee" data-count="0" data-date="2016-02-02"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2016-02-03"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="5" data-date="2016-02-04"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="1" data-date="2016-02-05"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2016-02-06"></rect>
+                    </g>
+                    <g transform="translate(572, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="1" data-date="2016-02-07"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#8cc665" data-count="10" data-date="2016-02-08"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#1e6823" data-count="30" data-date="2016-02-09"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#d6e685" data-count="3" data-date="2016-02-10"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#8cc665" data-count="7" data-date="2016-02-11"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2016-02-12"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#d6e685" data-count="4" data-date="2016-02-13"></rect>
+                    </g>
+                    <g transform="translate(585, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2016-02-14"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#8cc665" data-count="9" data-date="2016-02-15"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="2" data-date="2016-02-16"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#d6e685" data-count="1" data-date="2016-02-17"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="3" data-date="2016-02-18"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="1" data-date="2016-02-19"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#d6e685" data-count="4" data-date="2016-02-20"></rect>
+                    </g>
+                    <g transform="translate(598, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="1" data-date="2016-02-21"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="1" data-date="2016-02-22"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="2" data-date="2016-02-23"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#eeeeee" data-count="0" data-date="2016-02-24"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="4" data-date="2016-02-25"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="1" data-date="2016-02-26"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#d6e685" data-count="5" data-date="2016-02-27"></rect>
+                    </g>
+                    <g transform="translate(611, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#8cc665" data-count="11" data-date="2016-02-28"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#8cc665" data-count="8" data-date="2016-02-29"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#8cc665" data-count="12" data-date="2016-03-01"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#d6e685" data-count="3" data-date="2016-03-02"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#44a340" data-count="14" data-date="2016-03-03"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#eeeeee" data-count="0" data-date="2016-03-04"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#8cc665" data-count="8" data-date="2016-03-05"></rect>
+                    </g>
+                    <g transform="translate(624, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#8cc665" data-count="11" data-date="2016-03-06"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#44a340" data-count="18" data-date="2016-03-07"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#8cc665" data-count="8" data-date="2016-03-08"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#1e6823" data-count="28" data-date="2016-03-09"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#44a340" data-count="15" data-date="2016-03-10"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="3" data-date="2016-03-11"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2016-03-12"></rect>
+                    </g>
+                    <g transform="translate(637, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="5" data-date="2016-03-13"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="2" data-date="2016-03-14"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="1" data-date="2016-03-15"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#d6e685" data-count="4" data-date="2016-03-16"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#d6e685" data-count="1" data-date="2016-03-17"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="1" data-date="2016-03-18"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2016-03-19"></rect>
+                    </g>
+                    <g transform="translate(650, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#eeeeee" data-count="0" data-date="2016-03-20"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#eeeeee" data-count="0" data-date="2016-03-21"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#8cc665" data-count="9" data-date="2016-03-22"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#d6e685" data-count="3" data-date="2016-03-23"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#eeeeee" data-count="0" data-date="2016-03-24"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="5" data-date="2016-03-25"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#8cc665" data-count="8" data-date="2016-03-26"></rect>
+                    </g>
+                    <g transform="translate(663, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#8cc665" data-count="7" data-date="2016-03-27"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#8cc665" data-count="10" data-date="2016-03-28"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="4" data-date="2016-03-29"></rect>
+                        <rect class="day" width="11" height="11" y="39" fill="#1e6823" data-count="25" data-date="2016-03-30"></rect>
+                        <rect class="day" width="11" height="11" y="52" fill="#44a340" data-count="15" data-date="2016-03-31"></rect>
+                        <rect class="day" width="11" height="11" y="65" fill="#d6e685" data-count="1" data-date="2016-04-01"></rect>
+                        <rect class="day" width="11" height="11" y="78" fill="#eeeeee" data-count="0" data-date="2016-04-02"></rect>
+                    </g>
+                    <g transform="translate(676, 0)">
+                        <rect class="day" width="11" height="11" y="0" fill="#d6e685" data-count="2" data-date="2016-04-03"></rect>
+                        <rect class="day" width="11" height="11" y="13" fill="#d6e685" data-count="3" data-date="2016-04-04"></rect>
+                        <rect class="day" width="11" height="11" y="26" fill="#d6e685" data-count="2" data-date="2016-04-05"></rect>
+                    </g>
+                    <text x="0" y="-5" class="month">Apr</text>
+                    <text x="52" y="-5" class="month">May</text>
+                    <text x="117" y="-5" class="month">Jun</text>
+                    <text x="169" y="-5" class="month">Jul</text>
+                    <text x="221" y="-5" class="month">Aug</text>
+                    <text x="286" y="-5" class="month">Sep</text>
+                    <text x="338" y="-5" class="month">Oct</text>
+                    <text x="390" y="-5" class="month">Nov</text>
+                    <text x="455" y="-5" class="month">Dec</text>
+                    <text x="507" y="-5" class="month">Jan</text>
+                    <text x="572" y="-5" class="month">Feb</text>
+                    <text x="624" y="-5" class="month">Mar</text>
+                  <text text-anchor="middle" class="wday" dx="-10" dy="9" style="display: none;">S</text>
+                  <text text-anchor="middle" class="wday" dx="-10" dy="22">M</text>
+                  <text text-anchor="middle" class="wday" dx="-10" dy="35" style="display: none;">T</text>
+                  <text text-anchor="middle" class="wday" dx="-10" dy="48">W</text>
+                  <text text-anchor="middle" class="wday" dx="-10" dy="61" style="display: none;">T</text>
+                  <text text-anchor="middle" class="wday" dx="-10" dy="74">F</text>
+                  <text text-anchor="middle" class="wday" dx="-10" dy="87" style="display: none;">S</text>
+                </g>
+              </svg>
+
+                    </div>
+                    <div class="contrib-footer clearfix">
+                      <div class="left text-muted">
+                          Summary of pull requests, issues opened, and commits.
+                        <a href="https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile">
+                          Learn how we count contributions</a>.
+                      </div>
+                      <div class="contrib-legend text-small text-muted" title="A summary of pull requests, issues opened, and commits to the default and gh-pages branches.">
+                        <span>Less</span>
+                        <ul class="legend">
+                          <li style="background-color: #eee"></li>
+                          <li style="background-color: #d6e685"></li>
+                          <li style="background-color: #8cc665"></li>
+                          <li style="background-color: #44a340"></li>
+                          <li style="background-color: #1e6823"></li>
+                        </ul>
+                        <span>More</span>
+                      </div>
+                    </div>
+
+                      <div class="contrib-column contrib-column-first table-column">
+                        <span class="text-muted">Contributions in the last year</span>
+                        <span class="contrib-number">489 total</span>
+                        <span class="text-muted">Apr 5, 2015 – Apr 5, 2016</span>
+                      </div>
+                      <div class="contrib-column table-column">
+                        <span class="text-muted">Longest streak</span>
+                          <span class="contrib-number">9 days</span>
+                          <span class="text-muted">
+                            January 3 –
+                            January 11
+                            </span>
+                      </div>
+                      <div class="contrib-column table-column">
+                        <span class="text-muted">Current streak</span>
+                          <span class="contrib-number">3 days</span>
+                          <span class="text-muted">
+                            April 3 –
+                            April 5
+                          </span>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="activity-listing contribution-activity js-contribution-activity">
+
+              <div class="select-menu right js-menu-container js-select-menu js-period-container">
+                <button class="btn btn-sm select-menu-button js-menu-target" type="button" aria-haspopup="true">
+                  <i>Period:</i>
+                  <span class="js-select-button">1 week</span>
+                </button>
+                <div class="select-menu-modal-holder js-menu-content js-navigation-container" aria-hidden="true">
+                  <div class="select-menu-modal">
+                    <div class="select-menu-header js-navigation-enable" tabindex="-1">
+                      <svg aria-label="Close" class="octicon octicon-x js-menu-close" height="16" role="img" version="1.1" viewBox="0 0 12 16" width="12"><path d="M7.48 8l3.75 3.75-1.48 1.48-3.75-3.75-3.75 3.75-1.48-1.48 3.75-3.75L0.77 4.25l1.48-1.48 3.75 3.75 3.75-3.75 1.48 1.48-3.75 3.75z"></path></svg>
+                      <span class="select-menu-title">Filter activity</span>
+                    </div>
+                    <div class="select-menu-list" role="menu">
+                      <div class="select-menu-item js-navigation-item " role="menuitem">
+                        <input id="period_daily" name="period" type="radio" value="daily">
+                        <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+                        <div class="select-menu-item-text js-select-button-text">1 day</div>
+                      </div>
+                      <div class="select-menu-item js-navigation-item " role="menuitem">
+                        <input id="period_halfweekly" name="period" type="radio" value="halfweekly">
+                        <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+                        <div class="select-menu-item-text js-select-button-text">3 days</div>
+                      </div>
+                      <div class="select-menu-item js-navigation-item selected" role="menuitem">
+                        <input checked="checked" id="period_weekly" name="period" type="radio" value="weekly">
+                        <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+                        <div class="select-menu-item-text js-select-button-text">1 week</div>
+                      </div>
+                      <div class="select-menu-item js-navigation-item " role="menuitem">
+                        <input id="period_monthly" name="period" type="radio" value="monthly">
+                        <svg aria-hidden="true" class="octicon octicon-check select-menu-item-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M12 5L4 13 0 9l1.5-1.5 2.5 2.5 6.5-6.5 1.5 1.5z"></path></svg>
+                        <div class="select-menu-item-text js-select-button-text">1 month</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h2>Contribution activity</h2>
+
+              <img alt="" class="contribution-activity-spinner" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif">
+              <div class="contribution-activity-listing">
+
+
+                  <h3 class="conversation-list-heading">
+                    <span class="inner">
+                      <svg aria-hidden="true" class="octicon octicon-git-commit" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M10.86 7c-0.45-1.72-2-3-3.86-3s-3.41 1.28-3.86 3H0v2h3.14c0.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3h3.14V7H10.86zM7 10.2c-1.22 0-2.2-0.98-2.2-2.2s0.98-2.2 2.2-2.2 2.2 0.98 2.2 2.2-0.98 2.2-2.2 2.2z"></path></svg>
+                      <span class="text-emphasized">32</span> commits
+                    </span>
+                  </h3>
+
+                  <ul class="simple-conversation-list">
+                    <li>
+                        <a href="/NickyBobby/apicurious/commits?author=NickyBobby" class="title">
+                        Pushed 2 commits to NickyBobby/apicurious</a>
+                          Apr 4 – Apr 5
+                    </li>
+                    <li>
+                        <a href="/NickyBobby/chaimz_curator/commits?author=NickyBobby" class="title">
+                        Pushed 1 commit to NickyBobby/chaimz_curator</a>
+                          Apr 5
+                    </li>
+                    <li>
+                        <a href="/NickyBobby/binary-search-tree/commits?author=NickyBobby" class="title">
+                        Pushed 1 commit to NickyBobby/binary-search-tree</a>
+                          Apr 1
+                    </li>
+                    <li>
+                        <a href="/turingschool/community_content/commits?author=NickyBobby" class="title">
+                        Pushed 1 commit to turingschool/community_content</a>
+                          Mar 31
+                    </li>
+                    <li>
+                        <a href="/amaxwellblair/the_pivot/commits?author=NickyBobby" class="title">
+                        Pushed 27 commits to amaxwellblair/the_pivot</a>
+                          Mar 30 – Mar 31
+                    </li>
+                  </ul>
+
+                <h3 class="conversation-list-heading">
+                  <span class="inner">
+                    <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 11.28c0-1.73 0-6.28 0-6.28-0.03-0.78-0.34-1.47-0.94-2.06s-1.28-0.91-2.06-0.94c0 0-1.02 0-1 0V0L4 3l3 3V4h1c0.27 0.02 0.48 0.11 0.69 0.31s0.3 0.42 0.31 0.69v6.28c-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72z m-1 2.92c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2zM4 3c0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72 0 1.55 0 5.56 0 6.56-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72V4.72c0.59-0.34 1-0.98 1-1.72z m-0.8 10c0 0.66-0.55 1.2-1.2 1.2s-1.2-0.55-1.2-1.2 0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2z m-1.2-8.8c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+                    <span class="text-emphasized">10</span> Pull Requests
+                  </span>
+                </h3>
+                <ol class="contribution-pulls-list simple-conversation-list varied-states">
+                  <li class="contribution">
+                    <span class="state state-open">Open</span>
+                    <span class="num">#187</span>
+                    <a href="/turingschool/lesson_plans/pull/187" class="title">Update apicurious.md</a> <time title="2016-04-04 13:11:15 -06:00">Apr 4</time>
+                    <span class="cmeta"><a href="/turingschool/lesson_plans" class="muted-link">turingschool/lesson_plans</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-open">Open</span>
+                    <span class="num">#185</span>
+                    <a href="/turingschool/lesson_plans/pull/185" class="title">Update getting_started_with_oauth.md</a> <time title="2016-04-04 10:38:16 -06:00">Apr 4</time>
+                    <span class="cmeta"><a href="/turingschool/lesson_plans" class="muted-link">turingschool/lesson_plans</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-open">Open</span>
+                    <span class="num">#19</span>
+                    <a href="/applegrain/creact/pull/19" class="title">Update README.md</a> <time title="2016-04-03 21:40:54 -06:00">Apr 3</time>
+                    <span class="cmeta"><a href="/applegrain/creact" class="muted-link">applegrain/creact</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-open">Open</span>
+                    <span class="num">#18</span>
+                    <a href="/applegrain/creact/pull/18" class="title">Update README.md</a> <time title="2016-04-03 08:54:08 -06:00">Apr 3</time>
+                    <span class="cmeta"><a href="/applegrain/creact" class="muted-link">applegrain/creact</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-merged">Merged</span>
+                    <span class="num">#123</span>
+                    <a href="/amaxwellblair/the_pivot/pull/123" class="title">add dependency to the categories destroy action</a> <time title="2016-03-31 11:03:44 -06:00">Mar 31</time>
+                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-merged">Merged</span>
+                    <span class="num">#982</span>
+                    <a href="/turingschool/community_content/pull/982" class="title">Update module-03-21-16.markdown</a> <time title="2016-03-31 09:26:59 -06:00">Mar 31</time>
+                    <span class="cmeta"><a href="/turingschool/community_content" class="muted-link">turingschool/community_content</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-merged">Merged</span>
+                    <span class="num">#119</span>
+                    <a href="/amaxwellblair/the_pivot/pull/119" class="title">111 sad path tests</a> <time title="2016-03-31 01:35:32 -06:00">Mar 31</time>
+                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-merged">Merged</span>
+                    <span class="num">#117</span>
+                    <a href="/amaxwellblair/the_pivot/pull/117" class="title">112 delete junk</a> <time title="2016-03-30 23:52:33 -06:00">Mar 30</time>
+                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-merged">Merged</span>
+                    <span class="num">#108</span>
+                    <a href="/amaxwellblair/the_pivot/pull/108" class="title">Change approve/suspend buttons for platform admin</a> <time title="2016-03-30 17:45:58 -06:00">Mar 30</time>
+                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                  </li>
+                  <li class="contribution">
+                    <span class="state state-merged">Merged</span>
+                    <span class="num">#103</span>
+                    <a href="/amaxwellblair/the_pivot/pull/103" class="title">90 store admin can create store managers</a> <time title="2016-03-30 09:12:01 -06:00">Mar 30</time>
+                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                  </li>
+                </ol>
+
+                <h3 class="conversation-list-heading">
+                  <span class="inner">
+                    <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z m1 3H6v5h2V4z m0 6H6v2h2V10z"></path></svg>
+                    <span class="text-emphasized">6</span> Issues reported
+                  </span>
+                </h3>
+                <ul class="simple-conversation-list varied-states">
+                    <li class="contribution">
+                      <span class="state state-closed">Closed</span>
+                      <span class="num">#116</span>
+                      <a href="/amaxwellblair/the_pivot/issues/116" class="title">update orders sad path</a> <time title="2016-03-30 23:14:10 -06:00">Mar 30</time>
+                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                    </li>
+                    <li class="contribution">
+                      <span class="state state-closed">Closed</span>
+                      <span class="num">#114</span>
+                      <a href="/amaxwellblair/the_pivot/issues/114" class="title">style apply for manager button</a> <time title="2016-03-30 22:26:45 -06:00">Mar 30</time>
+                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                    </li>
+                    <li class="contribution">
+                      <span class="state state-closed">Closed</span>
+                      <span class="num">#113</span>
+                      <a href="/amaxwellblair/the_pivot/issues/113" class="title">Platform Admin delete category</a> <time title="2016-03-30 22:20:10 -06:00">Mar 30</time>
+                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                    </li>
+                    <li class="contribution">
+                      <span class="state state-closed">Closed</span>
+                      <span class="num">#112</span>
+                      <a href="/amaxwellblair/the_pivot/issues/112" class="title">Delete everything related to weather</a> <time title="2016-03-30 20:56:29 -06:00">Mar 30</time>
+                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                    </li>
+                    <li class="contribution">
+                      <span class="state state-closed">Closed</span>
+                      <span class="num">#111</span>
+                      <a href="/amaxwellblair/the_pivot/issues/111" class="title">sad path tests for stores/items</a> <time title="2016-03-30 20:51:07 -06:00">Mar 30</time>
+                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                    </li>
+                    <li class="contribution">
+                      <span class="state state-closed">Closed</span>
+                      <span class="num">#110</span>
+                      <a href="/amaxwellblair/the_pivot/issues/110" class="title">store manager tests</a> <time title="2016-03-30 20:48:46 -06:00">Mar 30</time>
+                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
+                    </li>
+                </ul>
+              </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

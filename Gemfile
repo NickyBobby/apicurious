@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'pry-rails'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -38,6 +38,8 @@ gem 'figaro'
 
 gem 'omniauth'
 gem 'omniauth-github'
+
+gem 'faraday'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
