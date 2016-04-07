@@ -4,16 +4,16 @@
       <div class="columns profilecols">
         <div class="column one-fourth vcard" itemscope itemtype="http://schema.org/Person">
           <a href="/account" aria-label="Change your avatar" class="vcard-avatar d-block tooltipped tooltipped-s">
-            <img alt class="avatar rounded-2" height="230" src="<%= @user.avatar %>" width="230">
+            <img alt class="avatar rounded-2" height="230" src="<%= @reg_user.avatar %>" width="230">
           </a>
           <h1 class="vcard-name my-3">
-            <div class="vcard-fullname" itemprop="name"><%= @user.name %></div>
-            <div class="vcard-username" itemprop="additionalName"><%= @user.username %></div>
+            <div class="vcard-fullname" itemprop="name"><%= @reg_user.name %></div>
+            <div class="vcard-username" itemprop="additionalName"><%= @reg_user.username %></div>
           </h1>
           <ul class="vcard-details border-top border-gray-light py-3">
             <li aria-label="Home location" class="vcard-detail py-1 cass-truncate cass-truncate-target" itemprop="homeLocation" title="Denver, CO">
               <svg aria-hidden="true" class="octicon octicon-location" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M6 0C2.69 0 0 2.5 0 5.5c0 4.52 6 10.5 6 10.5s6-5.98 6-10.5C12 2.5 9.31 0 6 0z m0 14.55C4.14 12.52 1 8.44 1 5.5 1 3.02 3.25 1 6 1c1.34 0 2.61 0.48 3.56 1.36 0.92 0.86 1.44 1.97 1.44 3.14 0 2.94-3.14 7.02-5 9.05z m2-9.05c0 1.11-0.89 2-2 2s-2-0.89-2-2 0.89-2 2-2 2 0.89 2 2z"></path></svg>
-              <%= current_user.user_info.location %>
+              <%= @user.user_info.location %>
             </li>
             <li aria-label="Member since" class="vcard-deatil py-1 cass-truncate cass-truncate-target">
               <svg aria-hidden="true" class="octicon octicon-clock" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M8 8h3v2H7c-0.55 0-1-0.45-1-1V4h2v4z m-1-5.7c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z"></path></svg>
@@ -23,22 +23,21 @@
           </ul>
           <div class="vcard-stats border-top border-bottom border-gray-light mb-3 py-3">
             <a class="vcard-stat" href="/NickyBobby/followers">
-              <strong class="vcard-stat-count d-block"><%= current_user.user_info.followers %></strong>
+              <strong class="vcard-stat-count d-block"><%= @user.user_info.followers %></strong>
               <span class="text-muted">Followers</span>
             </a>
             <a class="vcard-stat" href="/stars">
-              <strong class="vcard-stat-count d-block"><%= current_user.starred_repos.count %></strong>
+              <strong class="vcard-stat-count d-block"><%= @user.starred_repos.count %></strong>
               <span class="text-muted">Starred</span>
             </a>
             <a class="vcard-stat" href="/NickyBobby/following">
-              <strong class="vcard-stat-count d-block"><%= current_user.user_info.following %></strong>
+              <strong class="vcard-stat-count d-block"><%= @user.user_info.following %></strong>
               <span class="text-muted">Following</span>
             </a>
           </div>
         <div class="clearfix">
           <h3>Organizations</h3>
-          <%= current_user.organizations %>
-          <!-- <%= current_user.repositories %> -->
+          <%= @user.organizations %>
           <a href="/TestingTuringTesting" aria-label="TestingTuringTesting" class="tooltipped tooltipped-n avatar-group-item" itemprop="follows">
             <img alt="@TestingTuringTesting" class="avatar" height="42" src="https://avatars2.githubusercontent.com/u/17713133?v=3&s=84" width="42">
           </a>
@@ -752,24 +751,18 @@
 
                       <div class="contrib-column contrib-column-first table-column">
                         <span class="text-muted">Contributions in the last year</span>
-                        <span class="contrib-number">489 total</span>
-                        <span class="text-muted">Apr 5, 2015 – Apr 5, 2016</span>
+                        <span class="contrib-number"><%= @user.total_contributions %></span>
+                        <span class="text-muted"><%= @user.total_contributions_timeframe %></span>
                       </div>
                       <div class="contrib-column table-column">
                         <span class="text-muted">Longest streak</span>
-                          <span class="contrib-number">9 days</span>
-                          <span class="text-muted">
-                            January 3 –
-                            January 11
-                            </span>
+                          <span class="contrib-number"><%= @user.longest_streak %></span>
+                          <span class="text-muted"><%= @user.longest_streak_timeframe %></span>
                       </div>
                       <div class="contrib-column table-column">
                         <span class="text-muted">Current streak</span>
-                          <span class="contrib-number">3 days</span>
-                          <span class="text-muted">
-                            April 3 –
-                            April 5
-                          </span>
+                          <span class="contrib-number"><%= @user.current_streak %></span>
+                          <span class="text-muted"><%= @user.current_streak_timeframe %></>div>
                       </div>
                   </div>
                 </div>
@@ -813,162 +806,27 @@
                 </div>
               </div>
 
-              <h2>Contribution activity</h2>
-
-              <img alt="" class="contribution-activity-spinner" src="https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif">
-              <div class="contribution-activity-listing">
-
-
-                  <h3 class="conversation-list-heading">
-                    <span class="inner">
-                      <svg aria-hidden="true" class="octicon octicon-git-commit" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M10.86 7c-0.45-1.72-2-3-3.86-3s-3.41 1.28-3.86 3H0v2h3.14c0.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3h3.14V7H10.86zM7 10.2c-1.22 0-2.2-0.98-2.2-2.2s0.98-2.2 2.2-2.2 2.2 0.98 2.2 2.2-0.98 2.2-2.2 2.2z"></path></svg>
-                      <span class="text-emphasized">32</span> commits
-                    </span>
-                  </h3>
-
-                  <ul class="simple-conversation-list">
-                    <li>
-                        <a href="/NickyBobby/apicurious/commits?author=NickyBobby" class="title">
-                        Pushed 2 commits to NickyBobby/apicurious</a>
-                          Apr 4 – Apr 5
-                    </li>
-                    <li>
-                        <a href="/NickyBobby/chaimz_curator/commits?author=NickyBobby" class="title">
-                        Pushed 1 commit to NickyBobby/chaimz_curator</a>
-                          Apr 5
-                    </li>
-                    <li>
-                        <a href="/NickyBobby/binary-search-tree/commits?author=NickyBobby" class="title">
-                        Pushed 1 commit to NickyBobby/binary-search-tree</a>
-                          Apr 1
-                    </li>
-                    <li>
-                        <a href="/turingschool/community_content/commits?author=NickyBobby" class="title">
-                        Pushed 1 commit to turingschool/community_content</a>
-                          Mar 31
-                    </li>
-                    <li>
-                        <a href="/amaxwellblair/the_pivot/commits?author=NickyBobby" class="title">
-                        Pushed 27 commits to amaxwellblair/the_pivot</a>
-                          Mar 30 – Mar 31
-                    </li>
-                  </ul>
-
-                <h3 class="conversation-list-heading">
-                  <span class="inner">
-                    <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path d="M11 11.28c0-1.73 0-6.28 0-6.28-0.03-0.78-0.34-1.47-0.94-2.06s-1.28-0.91-2.06-0.94c0 0-1.02 0-1 0V0L4 3l3 3V4h1c0.27 0.02 0.48 0.11 0.69 0.31s0.3 0.42 0.31 0.69v6.28c-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72z m-1 2.92c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2zM4 3c0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72 0 1.55 0 5.56 0 6.56-0.59 0.34-1 0.98-1 1.72 0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.73-0.41-1.38-1-1.72V4.72c0.59-0.34 1-0.98 1-1.72z m-0.8 10c0 0.66-0.55 1.2-1.2 1.2s-1.2-0.55-1.2-1.2 0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2z m-1.2-8.8c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
-                    <span class="text-emphasized">10</span> Pull Requests
-                  </span>
-                </h3>
-                <ol class="contribution-pulls-list simple-conversation-list varied-states">
-                  <li class="contribution">
-                    <span class="state state-open">Open</span>
-                    <span class="num">#187</span>
-                    <a href="/turingschool/lesson_plans/pull/187" class="title">Update apicurious.md</a> <time title="2016-04-04 13:11:15 -06:00">Apr 4</time>
-                    <span class="cmeta"><a href="/turingschool/lesson_plans" class="muted-link">turingschool/lesson_plans</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-open">Open</span>
-                    <span class="num">#185</span>
-                    <a href="/turingschool/lesson_plans/pull/185" class="title">Update getting_started_with_oauth.md</a> <time title="2016-04-04 10:38:16 -06:00">Apr 4</time>
-                    <span class="cmeta"><a href="/turingschool/lesson_plans" class="muted-link">turingschool/lesson_plans</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-open">Open</span>
-                    <span class="num">#19</span>
-                    <a href="/applegrain/creact/pull/19" class="title">Update README.md</a> <time title="2016-04-03 21:40:54 -06:00">Apr 3</time>
-                    <span class="cmeta"><a href="/applegrain/creact" class="muted-link">applegrain/creact</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-open">Open</span>
-                    <span class="num">#18</span>
-                    <a href="/applegrain/creact/pull/18" class="title">Update README.md</a> <time title="2016-04-03 08:54:08 -06:00">Apr 3</time>
-                    <span class="cmeta"><a href="/applegrain/creact" class="muted-link">applegrain/creact</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-merged">Merged</span>
-                    <span class="num">#123</span>
-                    <a href="/amaxwellblair/the_pivot/pull/123" class="title">add dependency to the categories destroy action</a> <time title="2016-03-31 11:03:44 -06:00">Mar 31</time>
-                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-merged">Merged</span>
-                    <span class="num">#982</span>
-                    <a href="/turingschool/community_content/pull/982" class="title">Update module-03-21-16.markdown</a> <time title="2016-03-31 09:26:59 -06:00">Mar 31</time>
-                    <span class="cmeta"><a href="/turingschool/community_content" class="muted-link">turingschool/community_content</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-merged">Merged</span>
-                    <span class="num">#119</span>
-                    <a href="/amaxwellblair/the_pivot/pull/119" class="title">111 sad path tests</a> <time title="2016-03-31 01:35:32 -06:00">Mar 31</time>
-                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-merged">Merged</span>
-                    <span class="num">#117</span>
-                    <a href="/amaxwellblair/the_pivot/pull/117" class="title">112 delete junk</a> <time title="2016-03-30 23:52:33 -06:00">Mar 30</time>
-                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-merged">Merged</span>
-                    <span class="num">#108</span>
-                    <a href="/amaxwellblair/the_pivot/pull/108" class="title">Change approve/suspend buttons for platform admin</a> <time title="2016-03-30 17:45:58 -06:00">Mar 30</time>
-                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                  </li>
-                  <li class="contribution">
-                    <span class="state state-merged">Merged</span>
-                    <span class="num">#103</span>
-                    <a href="/amaxwellblair/the_pivot/pull/103" class="title">90 store admin can create store managers</a> <time title="2016-03-30 09:12:01 -06:00">Mar 30</time>
-                    <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                  </li>
-                </ol>
-
-                <h3 class="conversation-list-heading">
-                  <span class="inner">
-                    <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z m1 3H6v5h2V4z m0 6H6v2h2V10z"></path></svg>
-                    <span class="text-emphasized">6</span> Issues reported
-                  </span>
-                </h3>
-                <ul class="simple-conversation-list varied-states">
-                    <li class="contribution">
-                      <span class="state state-closed">Closed</span>
-                      <span class="num">#116</span>
-                      <a href="/amaxwellblair/the_pivot/issues/116" class="title">update orders sad path</a> <time title="2016-03-30 23:14:10 -06:00">Mar 30</time>
-                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                    </li>
-                    <li class="contribution">
-                      <span class="state state-closed">Closed</span>
-                      <span class="num">#114</span>
-                      <a href="/amaxwellblair/the_pivot/issues/114" class="title">style apply for manager button</a> <time title="2016-03-30 22:26:45 -06:00">Mar 30</time>
-                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                    </li>
-                    <li class="contribution">
-                      <span class="state state-closed">Closed</span>
-                      <span class="num">#113</span>
-                      <a href="/amaxwellblair/the_pivot/issues/113" class="title">Platform Admin delete category</a> <time title="2016-03-30 22:20:10 -06:00">Mar 30</time>
-                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                    </li>
-                    <li class="contribution">
-                      <span class="state state-closed">Closed</span>
-                      <span class="num">#112</span>
-                      <a href="/amaxwellblair/the_pivot/issues/112" class="title">Delete everything related to weather</a> <time title="2016-03-30 20:56:29 -06:00">Mar 30</time>
-                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                    </li>
-                    <li class="contribution">
-                      <span class="state state-closed">Closed</span>
-                      <span class="num">#111</span>
-                      <a href="/amaxwellblair/the_pivot/issues/111" class="title">sad path tests for stores/items</a> <time title="2016-03-30 20:51:07 -06:00">Mar 30</time>
-                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                    </li>
-                    <li class="contribution">
-                      <span class="state state-closed">Closed</span>
-                      <span class="num">#110</span>
-                      <a href="/amaxwellblair/the_pivot/issues/110" class="title">store manager tests</a> <time title="2016-03-30 20:48:46 -06:00">Mar 30</time>
-                      <span class="cmeta"><a href="/amaxwellblair/the_pivot" class="muted-link">amaxwellblair/the_pivot</a></span>
-                    </li>
+              <h2>Repositories</h2>
+                <ul class="repo-list js-repo-list" data-filterable-for="your-repos-filter" data-filterable-type="substring">
+                  <% @user.repositories.each do |repository| %>
+                    <div class="repo-list-item public source" itemprop="owns" itemscope itemtype="http://schema.org/Code">
+                      <h3 class="repo-list-name left">
+                        <a href="/<%= @reg_user.username %>/<%= repository.name %>" itemprop="name codeRepository"> <%= repository.name %></a>
+                      </h3>
+                      <div class="repo-list-stats">
+                        <span itemprop="programmingLanguage"><%= repository.language %></span>
+                        <a class="repo-list-stat-item tooltipped tooltipped-s" href="/<%= @reg_user.username %>/<%= repository.name %>/stargazers" aria-label="Stargazers">
+                          <svg aria-hidden="true" class="octicon octicon-star" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path d="M14 6l-4.9-0.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14l4.33-2.33 4.33 2.33L10.4 9.26 14 6z"></path></svg>
+                          <%= repository.stargazers_count %>
+                        </a>
+                        <a class="repo-list-stat-item tooltipped tooltipped-s" href="/<%= @reg_user.username %>/<%= repository.name %>/network" aria-label="Forks">
+                          <svg aria-hidden="true" class="octicon octicon-git-branch" height="16" version="1.1" viewBox="0 0 10 16" width="10"><path d="M10 5c0-1.11-0.89-2-2-2s-2 0.89-2 2c0 0.73 0.41 1.38 1 1.72v0.3c-0.02 0.52-0.23 0.98-0.63 1.38s-0.86 0.61-1.38 0.63c-0.83 0.02-1.48 0.16-2 0.45V4.72c0.59-0.34 1-0.98 1-1.72 0-1.11-0.89-2-2-2S0 1.89 0 3c0 0.73 0.41 1.38 1 1.72v6.56C0.41 11.63 0 12.27 0 13c0 1.11 0.89 2 2 2s2-0.89 2-2c0-0.53-0.2-1-0.53-1.36 0.09-0.06 0.48-0.41 0.59-0.47 0.25-0.11 0.56-0.17 0.94-0.17 1.05-0.05 1.95-0.45 2.75-1.25s1.2-1.98 1.25-3.02h-0.02c0.61-0.36 1.02-1 1.02-1.73zM2 1.8c0.66 0 1.2 0.55 1.2 1.2s-0.55 1.2-1.2 1.2-1.2-0.55-1.2-1.2 0.55-1.2 1.2-1.2z m0 12.41c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z m6-8c-0.66 0-1.2-0.55-1.2-1.2s0.55-1.2 1.2-1.2 1.2 0.55 1.2 1.2-0.55 1.2-1.2 1.2z"></path></svg>
+                          <%= repository.forks %>
+                        </a>
+                      </div>
+                    </div>
+                  <% end %>
                 </ul>
-              </div>
-
                 </div>
               </div>
             </div>

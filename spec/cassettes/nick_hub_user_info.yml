@@ -1,0 +1,79 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/users/NickyBobby?access_token=29a5d907fd39253bfe601eb5a636a87e1eaec99d
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 07 Apr 2016 17:10:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4961'
+      X-Ratelimit-Reset:
+      - '1460050015'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding
+      Etag:
+      - W/"3f3230105b0fc8a8f272ce68f8083830"
+      Last-Modified:
+      - Mon, 04 Apr 2016 21:24:04 GMT
+      X-Oauth-Scopes:
+      - ''
+      X-Accepted-Oauth-Scopes:
+      - user
+      X-Oauth-Client-Id:
+      - e3d34db59edd3d63f5d0
+      X-Github-Media-Type:
+      - github.v3
+      Access-Control-Expose-Headers:
+      - ETag, Link, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset,
+        X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Served-By:
+      - 13d09b732ebe76f892093130dc088652
+      X-Github-Request-Id:
+      - 3F910F63:174AE:D5BCDB:57069478
+    body:
+      encoding: ASCII-8BIT
+      string: '{"login":"NickyBobby","id":13855453,"avatar_url":"https://avatars.githubusercontent.com/u/13855453?v=3","gravatar_id":"","url":"https://api.github.com/users/NickyBobby","html_url":"https://github.com/NickyBobby","followers_url":"https://api.github.com/users/NickyBobby/followers","following_url":"https://api.github.com/users/NickyBobby/following{/other_user}","gists_url":"https://api.github.com/users/NickyBobby/gists{/gist_id}","starred_url":"https://api.github.com/users/NickyBobby/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/NickyBobby/subscriptions","organizations_url":"https://api.github.com/users/NickyBobby/orgs","repos_url":"https://api.github.com/users/NickyBobby/repos","events_url":"https://api.github.com/users/NickyBobby/events{/privacy}","received_events_url":"https://api.github.com/users/NickyBobby/received_events","type":"User","site_admin":false,"name":"Nicholas","company":null,"blog":null,"location":"Denver,
+        CO","email":null,"hireable":null,"bio":null,"public_repos":38,"public_gists":9,"followers":9,"following":16,"created_at":"2015-08-18T17:09:50Z","updated_at":"2016-04-04T21:24:04Z"}'
+    http_version: 
+  recorded_at: Thu, 07 Apr 2016 17:10:16 GMT
+recorded_with: VCR 3.0.1

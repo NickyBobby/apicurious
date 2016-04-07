@@ -43,12 +43,16 @@ gem 'faraday'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 
+gem 'nokogiri'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'capybara'
-  gem 'minitest-rails-capybara'
+  gem 'rspec-rails'
+  gem 'pry'
+  gem 'launchy'
 end
 
 group :development do
@@ -62,4 +66,6 @@ end
 
 group :test do
   gem 'simplecov', require: false
+  gem 'webmock'
+  gem 'vcr'
 end
