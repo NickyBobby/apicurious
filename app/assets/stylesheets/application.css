@@ -10,22 +10,4 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
-
- @import url(https://fonts.googleapis.com/css?family=Mouse+Memoirs);
- @import url(https://fonts.googleapis.com/css?family=Cabin:400);
- @import url(https://fonts.googleapis.com/css?family=Cabin:700);
- @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import "global";
- @import "fonts_colors";
- @import "shapes";
- @import "navbars";
- @import "items_carts";
- @import "landing_page";
- @import "weather";
- @import "dashboard";
- @import "tables";

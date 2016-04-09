@@ -5,50 +5,47 @@ class GithubUser
   end
 
   def user_info
-    NickHub.new.get_user_info(@user)
+    service.get_user_info
   end
 
   def starred_repos
-    NickHub.new.get_starred_repos
-  end
-
-  def notifications
-    NickHub.new.get_notifications
+    service.get_starred_repos
   end
 
   def repositories
-    NickHub.new.get_repositories(@user)
+    service.get_repositories
   end
 
   def organizations
-    NickHub.new.get_organizations(@user)
-  end
-
-  def recent_activity
-    NickHub.new.get_recent_activity
+    service.get_organizations
   end
 
   def current_streak
-    NickHub.new.get_current_streak(@user)
+    service.get_current_streak
   end
 
   def current_streak_timeframe
-    NickHub.new.get_current_streak_timeframe(@user)
+    service.get_current_streak_timeframe
   end
 
   def longest_streak
-    NickHub.new.get_longest_streak(@user)
+    service.get_longest_streak
   end
 
   def longest_streak_timeframe
-    NickHub.new.get_longest_streak_timeframe(@user)
+    service.get_longest_streak_timeframe
   end
 
   def total_contributions
-    NickHub.new.get_total_contributions(@user)
+    service.get_total_contributions
   end
 
   def total_contributions_timeframe
-    NickHub.new.get_total_contributions_timeframe(@user)
+    service.get_total_contributions_timeframe
   end
+
+  private
+    def service
+      @service ||= NickHub.new(@user)
+    end
 end

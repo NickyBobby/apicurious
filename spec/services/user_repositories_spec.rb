@@ -4,9 +4,9 @@ describe NickHub do
   context "#repositories" do
     it "returns repositories" do
       VCR.use_cassette("nick_hub#repositories") do
-        service = NickHub.new
         user = User.create(username: "NickyBobby")
-        repositories = service.get_repositories(user)
+        service = NickHub.new(user)
+        repositories = service.get_repositories
         repository = repositories.first
         expect(repository[:name]).to eq("apicurious")
         expect(repository[:language]).to eq("HTML")
